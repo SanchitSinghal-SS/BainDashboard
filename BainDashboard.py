@@ -87,14 +87,9 @@ def main():
             'Value': [
                 f'{capacity_utilization/100 * 24 * 365:.1f} hours',
                 f'{5/100*capacity_utilization/100 * 24 * 365:.1f} hours',
-                f'{capacity_utilization/100 * 24 * 365-5 /
-                   100*capacity_utilization/100 * 24 * 365:.1f} hours',
-                f'{(capacity_utilization/100 * 24 * 365-5 /
-                   100*capacity_utilization/100 * 24 * 365)*revenue/(capacity_utilization/100 * 24 * 365-repair_time /
-                   100*capacity_utilization/100 * 24 * 365):.1f} million',
-                f'{(capacity_utilization/100 * 24 * 365-5 /
-                   100*capacity_utilization/100 * 24 * 365)*cogs/(capacity_utilization/100 * 24 * 365-repair_time /
-                   100*capacity_utilization/100 * 24 * 365):.1f} million',
+                f'{capacity_utilization/100 * 24 * 365-5 /100*capacity_utilization/100 * 24 * 365:.1f} hours',
+                f'{(capacity_utilization/100 * 24 * 365-5 /100*capacity_utilization/100 * 24 * 365)*revenue/(capacity_utilization/100 * 24 * 365-repair_time /100*capacity_utilization/100 * 24 * 365):.1f} million',
+                f'{(capacity_utilization/100 * 24 * 365-5 / 100*capacity_utilization/100 * 24 * 365)*cogs/(capacity_utilization/100 * 24 * 365-repair_time /100*capacity_utilization/100 * 24 * 365):.1f} million',
                 f'{5/100*capacity_utilization/100 * 24 *
                     365*repair_cost/1000000:.2f} million'
             ]
