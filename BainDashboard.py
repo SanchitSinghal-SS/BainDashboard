@@ -67,10 +67,10 @@ def main():
             'Metric': ['Total Production Hours (Yearly)', 'Downtime', 'Effective Production Hours',
                        'Revenue ($ million)', 'Cost ($ million)', 'Repair Costs ($ million)'],
             'Value': [
-                f'{capacity_utilization/100 * 24 * 365:.1f} hours',
-                f'{repair_time/100*capacity_utilization/100 * 24 * 365:.1f} hours',
-                f'{capacity_utilization/100 * 24 * 365-repair_time /
-                   100*capacity_utilization/100 * 24 * 365:.1f} hours',
+                f'{(capacity_utilization/100 * 24 * 365):.1f} hours',
+                f'{(repair_time/100*capacity_utilization/100 * 24 * 365):.1f} hours',
+                f'{(capacity_utilization/100 * 24 * 365-repair_time /
+                   100*capacity_utilization/100 * 24 * 365):.1f} hours',
                 f'{revenue:.1f} million',
                 f'{cogs:.1f} million',
                 f'{repair_time/100*capacity_utilization /
