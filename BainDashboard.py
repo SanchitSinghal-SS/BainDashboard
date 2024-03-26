@@ -36,13 +36,23 @@ def main():
     effective_hours_with_reconfig, repair_costs_with_reconfig, revenue_change_with_reconfig = calculate_metrics(
         capacity_utilization, repair_cost, revenue, cogs, 5
     )
+    revenue_change = (capacity_utilization/100 * 24 * 365-5 /
+                      100*capacity_utilization/100 * 24 * 365)*revenue/(capacity_utilization/100 * 24 * 365-repair_time /
+                                                                        100*capacity_utilization/100 * 24 * 365) - revenue
+    cost_change = (capacity_utilization/100 * 24 * 365-5 /
+                   100*capacity_utilization/100 * 24 * 365)*cogs/(capacity_utilization/100 * 24 * 365-repair_time /
+                                                                  100*capacity_utilization/100 * 24 * 365) - cogs
 
+    repair_change = (5/100*capacity_utilization/100 * 24 *
+                     365*repair_cost/1000000)-(repair_time/100*capacity_utilization /
+                                               100 * 24 * 365*repair_cost/1000000)
+    net_change = (revenue_change - cost_change - repair_change)-0.5
     # Display graph
-    st.header('Revenue Change Comparison:')
+    st.header('Decision Visual:')
     fig, ax = plt.subplots(figsize=(12, 6))
-    labels = ['Without Reconfiguration', 'With Reconfiguration']
-    revenue_changes = [revenue_change_without_reconfig,
-                       revenue_change_with_reconfig]
+    labels = ['Equipment Reconfiguration Cost', 'Net Revenue Change']
+    revenue_changes = [0.5,
+                       net_change+0.5]
     bars = ax.bar(labels, revenue_changes, color=['skyblue', 'lightgreen'])
 
     # Add data labels to the bars
@@ -54,7 +64,10 @@ def main():
     ax.set_ylabel('Revenue Change ($ million)')
     ax.set_title('Revenue Change Comparison')
     st.pyplot(fig)
-
+    if net_change > 0:
+        st.success('Recommendation: Equipment Reconfiguration is Suggested')
+    else:
+        st.warning('Recommendation: Equipment Reconfiguration is Not Accepted')
     # Display results
     st.header('Results:')
     st.markdown('<p style="color: #808080;">Here we have assumed that cost as % of revenue remains same.</p>',
